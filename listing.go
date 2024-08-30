@@ -18,10 +18,8 @@ func Listing(ptr *[]Task) {
 		case 0:
 			return
 		case 1:
-			i := 1
 			for _, task := range *ptr {
-				fmt.Println(i, task)
-				i++
+				fmt.Println(task)
 			}
 		case 2:
 			// todo

@@ -35,6 +35,7 @@ func Editing(ptr *[]Task) {
 
 func createTask(ptr *[]Task) bool {
 	var task Task
+	task.ID = len(*ptr) + 1
 	task.Status = "todo"
 
 	fmt.Print("Введите задачу - ")
@@ -47,22 +48,14 @@ func createTask(ptr *[]Task) bool {
 	tm := time.Now()
 	task.Date = tm.Format("02.01.2006 - 15:04:05")
 
-	fmt.Println("Новая запись :")
-	fmt.Println(
-		task.Description, "|",
-		task.Status, "|",
-		task.Date,
-	)
-
 	*ptr = append(*ptr, task)
+	fmt.Println("Добавлено")
 	return true
 }
 
 func deleteTask(ptr *[]Task) bool {
-	i := 1
 	for _, task := range *ptr {
-		fmt.Println(i, task)
-		i++
+		fmt.Println(task)
 	}
 
 	fmt.Print("Какую задачу удалить? - ")
@@ -70,6 +63,7 @@ func deleteTask(ptr *[]Task) bool {
 	fmt.Scan(&indx)
 	*ptr = remove(*ptr, indx-1)
 
+	fmt.Println("Удалено")
 	return true
 }
 
