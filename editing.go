@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func Editing() {
+func Editing(ptr *[]Task) {
 	for num := 1; num != 0; {
 		fmt.Println(
 			"Работа с задачами :\n",
@@ -22,20 +22,19 @@ func Editing() {
 		case 0:
 			return
 		case 1:
-			createTask()
+			createTask(ptr)
 		case 2:
 			// изменение название-статус
 		case 3:
-			// удалить
+			deleteTask(ptr)
 		default:
 			return
 		}
 	}
 }
 
-func createTask() bool {
+func createTask(ptr *[]Task) bool {
 	var task Task
-	task.ID = 1
 	task.Status = "todo"
 
 	fmt.Print("Введите задачу - ")
@@ -50,10 +49,30 @@ func createTask() bool {
 
 	fmt.Println("Новая запись :")
 	fmt.Println(
-		task.ID, "|",
 		task.Description, "|",
 		task.Status, "|",
 		task.Date,
 	)
+
+	*ptr = append(*ptr, task)
 	return true
+}
+
+func deleteTask(ptr *[]Task) bool {
+	i := 1
+	for _, task := range *ptr {
+		fmt.Println(i, task)
+		i++
+	}
+
+	fmt.Print("Какую задачу удалить? - ")
+	indx := 0
+	fmt.Scan(&indx)
+	*ptr = remove(*ptr, indx-1)
+
+	return true
+}
+
+func remove(slice []Task, i int) []Task {
+	return append(slice[:i], slice[i+1:]...)
 }
