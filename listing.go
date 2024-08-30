@@ -5,12 +5,12 @@ import "fmt"
 func Listing(ptr *[]Task) {
 	for num := 1; num != 0; {
 		fmt.Println(
-			"Листинг задач :\n",
-			"0. Назад\n",
-			"1. Все задачи\n",
-			"2. Ожидающие\n",
-			"3. В процессе\n",
-			"4. Завершённые",
+			"Task listing :\n",
+			"0. Back\n",
+			"1. All tasks\n",
+			"2. Todo\n",
+			"3. In progress\n",
+			"4. Done",
 		)
 		fmt.Scan(&num)
 
@@ -22,11 +22,23 @@ func Listing(ptr *[]Task) {
 				fmt.Println(task)
 			}
 		case 2:
-			// todo
+			for _, task := range *ptr {
+				if task.Status == "-todo-" {
+					fmt.Println(task)
+				}
+			}
 		case 3:
-			// in progress
+			for _, task := range *ptr {
+				if task.Status == "..in_progress.." {
+					fmt.Println(task)
+				}
+			}
 		case 4:
-			// done
+			for _, task := range *ptr {
+				if task.Status == "!!done!!" {
+					fmt.Println(task)
+				}
+			}
 		default:
 			return
 		}

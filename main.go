@@ -9,14 +9,18 @@ type Task struct {
 }
 
 func main() {
-	tasks := []Task{}
+	tasks := []Task{
+		{1, "заснуть", "-todo-", "30.08.2024 - 18:48:48"},
+		{2, "устать", "..in_progress..", "30.08.2024 - 18:48:52"},
+		{3, "проснуться", "!!done!!", "30.08.2024 - 18:48:57"},
+	}
 
 	for num := 1; num != 0; {
 		fmt.Println(
-			"Выберите действие :\n",
-			"0. Выход из программы\n",
-			"1. Работа с задачами\n",
-			"2. Листинг задач",
+			"Select an action :\n",
+			"0. Exit\n",
+			"1. Editing tasks\n",
+			"2. Task listing",
 		)
 		fmt.Scan(&num)
 
